@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer roleId;
 
     @Enumerated(EnumType.STRING)

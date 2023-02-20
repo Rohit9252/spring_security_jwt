@@ -37,9 +37,9 @@ public class StudentConfig {
             http.exceptionHandling().authenticationEntryPoint(entryPoint).and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                     .authorizeHttpRequests(auth ->{
-             auth.requestMatchers("/signup", "/login","/api/test/all").permitAll()
-                     .anyRequest().authenticated();
-            }).cors().and().csrf().disable();
+                        auth.requestMatchers("/signup", "/login","/api/test/all").permitAll()
+                                .anyRequest().authenticated();
+                    }).cors().and().csrf().disable();
             http.authenticationProvider(daoAuthenticationProvider());
             http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
             
