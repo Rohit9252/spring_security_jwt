@@ -40,13 +40,36 @@ The following endpoints are available in this application:
 # Configuration
 The application uses the following configuration properties:
  
-jwt.secret - The secret key used to sign JWT tokens
-jwt.expirationMs - The expiration time (in milliseconds) for JWT tokens
-spring.datasource.url - The URL of the database used by the application
-spring.datasource.username - The username used to connect to the database
-spring.datasource.password - The password used to connect to the database
+* `jwt.secret - The secret key used to sign JWT tokens
+* `jwt.expirationMs - The expiration time (in milliseconds) for JWT tokens
+* `spring.datasource.url - The URL of the database used by the application
+* `spring.datasource.username - The username used to connect to the database
+* `spring.datasource.password - The password used to connect to the database
+
+
 You can modify these properties by editing the application.properties file located in the src/main/resources directory.
 
+# Security
+
+This application uses Spring Security to provide authentication and authorization. JWT tokens are used to authenticate users and to grant access to protected endpoints.
+
+
+# License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+# Acknowledgments
+
+This application was created using the following technologies:
+
+ * Spring Boot
+ * Spring Security
+ * JWT
+ * MySQL
+ * Maven
+ * Docker
+
+# docker-compose down to shut down the Application
   
   
 
@@ -56,4 +79,4 @@ You can modify these properties by editing the application.properties file locat
 
    
    
-# docker-compose down  
+
