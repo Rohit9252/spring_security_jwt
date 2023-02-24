@@ -9,19 +9,19 @@ To build and run the Docker image for this application, follow these steps:
 
 1.Clone the repository to your local machine.
 
- git clone https://github.com/rohit9252/spring_security_jwt.git
+  * git clone https://github.com/rohit9252/spring_security_jwt.git
  
 2. Change into the project directory. 
 
-  cd spring-security-jwt-app
+   * cd spring-security-jwt-app
   
 3. Build the Docker image.
 
-  docker build -t spring-security-jwt-app 
+  * docker build -t spring-security-jwt-app 
 
 4. Run the Docker container.
  
- #docker run --network loginnetwork  --name security  -p 8888:8080 jwtapp  
+ # docker run --network loginnetwork  --name security  -p 8888:8080 jwtapp  
  
  # docker-compose up --build  
  
