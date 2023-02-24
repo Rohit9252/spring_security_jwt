@@ -30,11 +30,12 @@ Once the container is running, you can access the application at http://localhos
 # API Endpoints
 The following endpoints are available in this application:
 
-* `/api/auth/signin - Authenticates a user and returns a JWT token
-* `/api/auth/signup - Registers a new user
-* `/api/test/all - A public endpoint that can be accessed without authentication
-* `/api/test/user - An endpoint that can only be accessed by authenticated users
-* `/api/test/admin - An endpoint that can only be accessed by users with the "ROLE_ADMIN" role
+* `/api/login - Authenticates a user and returns a JWT token
+* `/api/signup - Registers a new user
+* `/api/hello - Get user details
+* `/api/all - A public endpoint that can be accessed without authentication
+* `/api/user - An endpoint that can only be accessed by authenticated users
+* `/api/admin - An endpoint that can only be accessed by users with the "ROLE_ADMIN" role
 
 
 # Configuration
