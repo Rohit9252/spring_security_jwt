@@ -70,7 +70,9 @@ This application was created using the following technologies:
  * Maven
  * Docker
 
-# docker-compose down to shut down the Application
+#  For shut down the Application
+
+ * ` docker-compose down 
   
   
 
