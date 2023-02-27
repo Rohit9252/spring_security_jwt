@@ -72,7 +72,7 @@ This application was created using the following technologies:
 
 #  For shut down the Application
 
- * ` docker-compose down 
+ * docker-compose down 
  
  
 #  Thank You !! 
