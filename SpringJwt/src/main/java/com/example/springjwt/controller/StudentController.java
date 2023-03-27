@@ -6,7 +6,12 @@ import com.example.springjwt.Service.UserDetailImpl;
 import com.example.springjwt.jwt.JwtUtil;
 import com.example.springjwt.model.Student;
 import com.example.springjwt.repository.StudentRepo;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
+
+import org.hibernate.dialect.identity.CockroachDBIdentityColumnSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,6 +52,8 @@ public class StudentController {
         @PostMapping("/signup")
         public ResponseEntity<String> sigupHandler(@RequestBody  SignupDto signupDto){
 
+            System.out.println(signupDto.toString());
+
             signupDto.setPassword(passwordEncoder.encode(signupDto.getPassword()));
 
             return ResponseEntity.ok(studentService.signup(signupDto));
@@ -55,7 +62,7 @@ public class StudentController {
         }
 
         @PostMapping("/login")
-        public ResponseEntity<JwtResponse> loginHandler(@RequestBody LoginDto loginDto) {
+        public ResponseEntity<JwtResponse> loginHandler(@RequestBody LoginDto loginDto, HttpServletResponse response) {
 
             Authentication auth =   authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
@@ -72,13 +79,23 @@ public class StudentController {
             jwtResponse.setEmail(userDetail.getUsername());
             jwtResponse.setRole(list);
 
-
-          return ResponseEntity.ok( jwtResponse);
+            // set the cockie here
+            Cookie cookie = new Cookie("jwt",jwt);
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            cookie.setMaxAge(60*60*24*7);
+            response.addCookie(cookie);
+          return ResponseEntity.ok( jwtResponse );
 
         }
 
         @GetMapping("/hello")
-        public ResponseEntity<Student> getCurrentUser() {
+        public ResponseEntity<Student> getCurrentUser( HttpServletResponse response){
+             // get data first from cockie 
+       
+
+
+
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             UserDetailImpl userDetail = (UserDetailImpl) auth.getPrincipal();
             Optional<Student> opt = studentRepo.findByEmail(userDetail.getUsername());
