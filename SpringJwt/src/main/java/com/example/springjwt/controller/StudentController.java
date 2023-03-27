@@ -8,6 +8,7 @@ import com.example.springjwt.model.Student;
 import com.example.springjwt.repository.StudentRepo;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 
@@ -79,6 +80,8 @@ public class StudentController {
             jwtResponse.setEmail(userDetail.getUsername());
             jwtResponse.setRole(list);
 
+
+
             // set the cockie here
             Cookie cookie = new Cookie("jwt",jwt);
             cookie.setHttpOnly(true);
@@ -90,10 +93,16 @@ public class StudentController {
         }
 
         @GetMapping("/hello")
-        public ResponseEntity<Student> getCurrentUser( HttpServletResponse response){
+        public ResponseEntity<Student> getCurrentUser(HttpServletRequest request){
              // get data first from cockie 
-       
 
+            String header = request.getHeader("Authorization");
+
+            System.out.println(header);
+
+            // read data from cockie
+            Cookie[] cookies = request.getCookies();
+            System.out.println(cookies[0].getValue());
 
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();

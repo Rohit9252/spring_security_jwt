@@ -3,6 +3,7 @@ package com.example.springjwt.jwt;
 import com.example.springjwt.Service.StudentServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,20 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private StudentServiceImpl studentServiceImpl;
 
     private String parseToken(HttpServletRequest request){
-        String header = request.getHeader("Authorization");
-        if(header != null && header.startsWith("Bearer ")){
-            return header.substring(7, header.length());
+//        String header = request.getHeader("Authorization");
+        Cookie[] cookies = request.getCookies();
+
+//        if(header != null && header.startsWith("Bearer ")){
+//            return header.substring(7, header.length());
+//        }
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("jwt")){
+                    return cookie.getValue();
+                }
+            }
         }
+
         return null;
     }
 
