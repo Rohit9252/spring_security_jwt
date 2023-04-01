@@ -75,7 +75,7 @@ This application was created using the following technologies:
  * docker-compose down 
  
  
-#  Thank You !! 
+#  Thank You !! 😊
   
   
 
