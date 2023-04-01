@@ -96,6 +96,13 @@ public class StudentController {
         public ResponseEntity<Student> getCurrentUser(HttpServletRequest request){
              // get data first from cockie 
 
+            String header = request.getHeader("Authorization");
+
+            System.out.println(header);
+
+            // read data from cockie
+            Cookie[] cookies = request.getCookies();
+            System.out.println(cookies[0].getValue());
 
             // read data from cockie
             Cookie[] cookies = request.getCookies();
